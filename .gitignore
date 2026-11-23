@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# SQLite WAL and temporary files
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Environment & Logs
+.env
+*.log
+npm-debug.log*
+
+# OS Files
+Thumbs.db
+.DS_Store

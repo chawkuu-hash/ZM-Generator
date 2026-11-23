@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ဝန်ဆောင်မှု အခြေအနေ စစ်ဆေးရန် | ZM Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Nav Header -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20">
+            <i data-lucide="zap" class="w-6 h-6 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="font-extrabold text-xl tracking-tight leading-none text-white">ZM <span class="gradient-text-amber">GENERATOR</span></div>
+            <p class="text-[11px] text-slate-400 font-medium mt-1">မီးစက် ရောင်း • ဝယ် • ငှား • ပြုပြင်</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပင်မစာမျက်နှာ</a>
+          <a href="/generators.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ရောင်းရန် မီးစက်များ</a>
+          <a href="/rentals.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် အငှား</a>
+          <a href="/sell.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် ပြန်ရောင်းရန်</a>
+          <a href="/repair.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+          <a href="/track.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-amber-400 bg-amber-400/10">အခြေအနေစစ်ဆေးရန်</a>
+        </nav>
+
+        <a href="tel:09777888999" class="site-phone-primary hidden sm:flex items-center gap-2 bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs sm:text-sm">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>09 777 888 999</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div class="bg-slate-900/80 border-b border-slate-800 py-10">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20 inline-block mb-3">
+        🔍 LIVE TRACKING
+      </span>
+      <h1 class="text-3xl font-extrabold text-white">ဝန်ဆောင်မှု အခြေအနေ စစ်ဆေးရန်</h1>
+      <p class="text-slate-300 text-sm mt-2">
+        လူကြီးမင်း၏ ပြုပြင်ရေးလက်မှတ်ကုဒ် (REP-...)၊ ငှားရမ်းမှုဘိုကင် (RNT-...)၊ ရောင်းချတင်ပြကုဒ် (SELL-...) သို့မဟုတ် မှတ်ပုံတင်ခဲ့သော ဖုန်းနံပါတ်ဖြင့် အခြေအနေကို စစ်ဆေးနိုင်ပါသည်
+      </p>
+    </div>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 space-y-8">
+    <!-- Search Box -->
+    <div class="glass rounded-2xl p-6 border border-slate-800 shadow-xl">
+      <form id="track-form" class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="track-query" required placeholder="ကုဒ် (ဥပမာ REP-202611-001) သို့မဟုတ် ဖုန်းနံပါတ် ထည့်သွင်းပါ" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+        </div>
+        <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition shrink-0 shadow-lg shadow-amber-500/20">
+          <i data-lucide="search" class="w-4 h-4"></i>
+          <span>ရှာဖွေမည်</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Container -->
+    <div id="results-area" class="space-y-4">
+      <div class="text-center text-slate-500 py-12">
+        <i data-lucide="file-search" class="w-12 h-12 mx-auto mb-2 opacity-40"></i>
+        <p class="text-xs">စစ်ဆေးလိုသည့် လက်မှတ်ကုဒ် သို့မဟုတ် ဖုန်းနံပါတ်ကို အထက်တွင် ရိုက်ထည့်ပါ</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const form = document.getElementById('track-form');
+    const resultsArea = document.getElementById('results-area');
+    const queryInput = document.getElementById('track-query');
+
+    // Auto-search if query param present
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get('q');
+    if (qParam) {
+      queryInput.value = qParam;
+      doSearch(qParam);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = queryInput.value.trim();
+      if (q) doSearch(q);
+    });
+
+    async function doSearch(q) {
+      resultsArea.innerHTML = `
+        <div class="py-12 text-center text-slate-400">
+          <div class="inline-block animate-spin mb-2"><i data-lucide="loader-2" class="w-6 h-6 text-amber-400"></i></div>
+          <p class="text-xs">စစ်ဆေးရှာဖွေနေပါသည်...</p>
+        </div>
+      `;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`/api/track/${encodeURIComponent(q)}`);
+        const json = await res.json();
+
+        if (json.success && json.data.length > 0) {
+          resultsArea.innerHTML = json.data.map(item => renderTrackItem(item)).join('');
+          lucide.createIcons();
+        } else {
+          resultsArea.innerHTML = `
+            <div class="glass rounded-2xl p-8 border border-slate-800 text-center">
+              <i data-lucide="alert-circle" class="w-10 h-10 text-rose-400 mx-auto mb-2"></i>
+              <h4 class="font-bold text-white text-base">ရှာဖွေမှု အထောက်အထား မတွေ့ရှိပါ</h4>
+              <p class="text-xs text-slate-400 mt-1">လက်မှတ်ကုဒ် သို့မဟုတ် ဖုန်းနံပါတ် မှန်ကန်မှု ရှိ/မရှိ ပြန်လည်စစ်ဆေးပေးပါ</p>
+            </div>
+          `;
+          lucide.createIcons();
+        }
+      } catch (err) {
+        resultsArea.innerHTML = `
+          <div class="glass rounded-2xl p-8 border border-slate-800 text-center">
+            <i data-lucide="wifi-off" class="w-10 h-10 text-rose-400 mx-auto mb-2"></i>
+            <h4 class="font-bold text-white text-base">ချိတ်ဆက်မှု မအောင်မြင်ပါ</h4>
+            <p class="text-xs text-slate-400 mt-1">ခေတ္တစောင့်ဆိုင်းပြီး ပြန်လည်ကြိုးစားပါ</p>
+          </div>
+        `;
+        lucide.createIcons();
+      }
+    }
+
+    function renderTrackItem(item) {
+      let typeLabel = '';
+      let typeColor = 'bg-slate-800 text-slate-200';
+      let statusColor = 'bg-amber-500/20 text-amber-400 border border-amber-500/30';
+      let statusText = item.status;
+
+      if (item.type === 'repair') {
+        typeLabel = '🛠️ မီးစက် ပြုပြင်ရေး လက်မှတ်';
+        typeColor = 'bg-rose-500/10 text-rose-400 border border-rose-500/20';
+        if (item.status === 'pending') statusText = 'လက်ခံရရှိထားသည် (Pending)';
+        if (item.status === 'inspected') statusText = 'စစ်ဆေးဆဲ (Inspected)';
+        if (item.status === 'in_progress') statusText = 'ပြုပြင်နေဆဲ (In Progress)';
+        if (item.status === 'completed') {
+          statusText = 'ပြုပြင်ပြီးစီး (Completed)';
+          statusColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        }
+      } else if (item.type === 'rental') {
+        typeLabel = '⚡ မီးစက် ငှားရမ်းမှု ဘိုကင်';
+        typeColor = 'bg-sky-500/10 text-sky-400 border border-sky-500/20';
+        if (item.status === 'pending') statusText = 'ဘိုကင်လက်ခံဆဲ (Pending)';
+        if (item.status === 'confirmed') statusText = 'အတည်ပြုပြီး (Confirmed)';
+        if (item.status === 'ongoing') statusText = 'ငှားရမ်းအသုံးပြုနေဆဲ (Ongoing)';
+        if (item.status === 'completed') {
+          statusText = 'ပြီးစီး (Completed)';
+          statusColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        }
+      } else if (item.type === 'sell') {
+        typeLabel = '💰 မီးစက် ပြန်လည်ရောင်းချ တင်ပြချက်';
+        typeColor = 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+        if (item.status === 'pending' || item.status === 'reviewing') statusText = 'စစ်ဆေးဆဲ (Reviewing)';
+        if (item.status === 'contacted') statusText = 'တာဝန်ခံမှ ဆက်သွယ်ပြီး (Contacted)';
+        if (item.status === 'purchased') {
+          statusText = 'ဝယ်ယူပြီးစီး (Purchased)';
+          statusColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        }
+      } else if (item.type === 'order') {
+        typeLabel = '🛒 မီးစက် ဝယ်ယူမှု အမှာစာ';
+        typeColor = 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        if (item.status === 'new_inquiry') statusText = 'အသစ်လက်ခံရရှိသည် (New Inquiry)';
+        if (item.status === 'deal_closed') {
+          statusText = 'အရောင်းပြီးစီး (Deal Closed)';
+          statusColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        }
+      }
+
+      return `
+        <div class="glass rounded-2xl p-6 border border-slate-800 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${typeColor}">
+                ${typeLabel}
+              </span>
+              <span class="font-mono text-sm font-bold text-white">${item.code}</span>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold ${statusColor}">
+              ${statusText}
+            </span>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-xs">
+            <div>
+              <span class="text-slate-400 block">အမည် / ဖုန်းနံပါတ်</span>
+              <span class="font-semibold text-white">${item.customer_name} • ${item.customer_phone}</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block">တင်ပြခဲ့သည့် ရက်စွဲ</span>
+              <span class="text-slate-300">${item.created_at || '-'}</span>
+            </div>
+
+            ${item.technician_assigned ? `
+              <div>
+                <span class="text-slate-400 block">တာဝန်ကျ အင်ဂျင်နီယာ</span>
+                <span class="font-semibold text-amber-400 flex items-center gap-1">
+                  <i data-lucide="user-check" class="w-3.5 h-3.5"></i> ${item.technician_assigned}
+                </span>
+              </div>
+            ` : ''}
+
+            ${item.cost_estimate_mmk ? `
+              <div>
+                <span class="text-slate-400 block">ခန့်မှန်း ကုန်ကျစရိတ်</span>
+                <span class="font-bold text-emerald-400">${Number(item.cost_estimate_mmk).toLocaleString()} ကျပ်</span>
+              </div>
+            ` : ''}
+
+            ${item.issue_description ? `
+              <div class="sm:col-span-2 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-slate-400 block mb-1">တင်ပြထားသော အကြောင်းအရာ:</span>
+                <p class="text-slate-200 leading-relaxed">${item.issue_description}</p>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

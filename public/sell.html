@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>မိမိမီးစက် ပြန်ရောင်းရန် (Sell Your Generator) | ZM Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Nav Header -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20">
+            <i data-lucide="zap" class="w-6 h-6 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="font-extrabold text-xl tracking-tight leading-none text-white">ZM <span class="gradient-text-amber">GENERATOR</span></div>
+            <p class="text-[11px] text-slate-400 font-medium mt-1">မီးစက် ရောင်း • ဝယ် • ငှား • ပြုပြင်</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပင်မစာမျက်နှာ</a>
+          <a href="/generators.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ရောင်းရန် မီးစက်များ</a>
+          <a href="/rentals.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် အငှား</a>
+          <a href="/sell.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-amber-400 bg-amber-400/10">မီးစက် ပြန်ရောင်းရန်</a>
+          <a href="/repair.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+          <a href="/track.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">အခြေအနေစစ်ဆေးရန်</a>
+        </nav>
+
+        <a href="tel:09777888999" class="site-phone-primary hidden sm:flex items-center gap-2 bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs sm:text-sm">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>09 777 888 999</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div class="bg-slate-900/80 border-b border-slate-800 py-10">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 inline-block mb-3">
+        💰 ချက်ချင်း လက်ငင်း ငွေချေစနစ်
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">မိမိမီးစက်ဟောင်း ပြန်လည်ရောင်းချရန်</h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        အသုံးမလိုတော့သော မီးစက်ဟောင်းများ၊ ဒုက္ခပေးနေသော မီးစက်များကို ZM Generator မှ ကာလပေါက်ဈေးမှန်ဖြင့် နေရာအရောက် စစ်ဆေးဝယ်ယူပေးပါသည်။
+      </p>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 space-y-12">
+    <!-- 3 Step Process -->
+    <div class="grid sm:grid-cols-3 gap-6 text-center">
+      <div class="glass rounded-2xl p-6 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+          1
+        </div>
+        <h4 class="font-bold text-white text-base mb-1">အချက်အလက် ပေးပို့ပါ</h4>
+        <p class="text-xs text-slate-400">မီးစက်တံဆိပ်၊ kVA ပါဝါ၊ စက်အခြေအနေနှင့် ဓာတ်ပုံများကို အောက်ပါပုံစံတွင် ဖြည့်စွက်ပေးပို့ပါ</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+          2
+        </div>
+        <h4 class="font-bold text-white text-base mb-1">နေရာအရောက် စစ်ဆေးခြင်း</h4>
+        <p class="text-xs text-slate-400">ZM ကျွမ်းကျင် အင်ဂျင်နီယာအဖွဲ့မှ လူကြီးမင်းထံသို့ လာရောက်စစ်ဆေး၍ အကောင်းဆုံး ဈေးနှုန်း ညှိနှိုင်းပါမည်</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+          3
+        </div>
+        <h4 class="font-bold text-white text-base mb-1">ချက်ချင်း ငွေချေစနစ်</h4>
+        <p class="text-xs text-slate-400">ဈေးနှုန်းသဘောတူညီပါက ချက်ချင်း လက်ငင်း ငွေချေပြီး ZM ကရိန်းယာဉ်ဖြင့် လာရောက်သယ်ယူပါသည်</p>
+      </div>
+    </div>
+
+    <!-- Submission Form -->
+    <div class="glass rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl">
+      <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-800">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+          <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white">မီးစက် အချက်အလက်များ တင်ပြရန် ပုံစံ</h3>
+          <p class="text-xs text-slate-400">အောက်ပါအချက်အလက်များကို ပြည့်စုံစွာ ဖြည့်သွင်းပေးပါ</p>
+        </div>
+      </div>
+
+      <form id="sell-form" class="space-y-6" enctype="multipart/form-data">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">လူကြီးမင်း အမည် *</label>
+            <input type="text" name="seller_name" required placeholder="ဦးကျော်ကျော်" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">ဆက်သွယ်ရမည့် ဖုန်းနံပါတ် *</label>
+            <input type="tel" name="seller_phone" required placeholder="09xxxxxxxxx" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">မီးစက် အမှတ်တံဆိပ် *</label>
+            <select name="brand" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="Denyo">Denyo</option>
+              <option value="Airman">Airman</option>
+              <option value="Cummins">Cummins</option>
+              <option value="Perkins">Perkins</option>
+              <option value="Kubota">Kubota</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Yanmar">Yanmar</option>
+              <option value="Other">အခြားတံဆိပ် (Other)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">ပါဝါ ပမာဏ (kVA) *</label>
+            <input type="number" name="capacity_kva" required placeholder="ဥပမာ 25, 45, 100" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">မော်ဒယ်နံပါတ် (Model)</label>
+            <input type="text" name="model" placeholder="DCA-25ESK, etc." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">လည်ပတ်နာရီ (Running Hours)</label>
+            <input type="number" name="running_hours" placeholder="ဥပမာ 3500 နာရီ" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">မျှော်မှန်း ရောင်းဈေး (သိန်း)</label>
+            <input type="number" name="expected_price_lakhs" placeholder="ဥပမာ 250 သိန်း" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">မီးစက်တည်ရှိရာ မြို့/နေရာ *</label>
+            <input type="text" name="location" required placeholder="ရန်ကုန် (လှိုင်သာယာ / ရွှေပြည်သာ စသည်)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">စက်အခြေအနေ ဖော်ပြချက် *</label>
+          <textarea name="condition_description" required rows="3" placeholder="အင်ဂျင် ကောင်း/မကောင်း၊ ဆေးသား၊ ကွိုင်အခြေအနေ၊ ပုံမှန်နှိုးရခြင်း ရှိ/မရှိ စသည်..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">မီးစက် ဓာတ်ပုံများ (Photo Upload - ၅ ပုံအထိ)</label>
+          <div class="border-2 border-dashed border-slate-700 hover:border-amber-500 rounded-2xl p-6 text-center bg-slate-900/50 transition cursor-pointer relative">
+            <input type="file" name="photos" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+            <i data-lucide="image-plus" class="w-8 h-8 text-amber-400 mx-auto mb-2"></i>
+            <p class="text-xs text-slate-300 font-medium">မီးစက်ဓာတ်ပုံများကို ရွေးချယ်ရန် နှိပ်ပါ သို့မဟုတ် ဖိုင်ဆွဲတင်ပါ</p>
+            <p class="text-[11px] text-slate-500 mt-1">JPG, PNG, WEBP ဖိုင်များ (အများဆုံး 10MB)</p>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 text-slate-950 font-extrabold text-sm shadow-xl shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+          <i data-lucide="check-circle" class="w-5 h-5"></i>
+          <span>မီးစက် ရောင်းချရန် တင်ပြမည်</span>
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.getElementById('sell-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('/api/sell', {
+          method: 'POST',
+          body: formData
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(`တင်ပြချက် အောင်မြင်ပါသည်! တင်ပြကုဒ်: ${json.submission_code}`);
+          form.reset();
+        } else {
+          showToast(json.error || 'အမှားဖြစ်ပေါ်နေပါသည်', 'error');
+        }
+      } catch (err) {
+        showToast('ဆာဗာသို့ ပေးပို့မရပါ', 'error');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

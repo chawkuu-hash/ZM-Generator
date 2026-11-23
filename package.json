@@ -1,0 +1,21 @@
+{
+  "name": "zm-generator-web",
+  "version": "1.0.0",
+  "description": "Secondhand Generator Buy, Sell, Rent and Repair Services E-Commerce Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node database/seed.js"
+  },
+  "keywords": ["generator", "ecommerce", "rental", "repair", "sqlite", "nodejs", "myanmar"],
+  "author": "ZM Generator",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

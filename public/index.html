@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZM Generator - ဂျပန်တစ်ပတ်ရစ် မီးစက် ရောင်း/ဝယ်/ငှား နှင့် ပြုပြင်ရေး ဝန်ဆောင်မှု</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 to-amber-700 text-slate-950 text-xs sm:text-sm font-semibold py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+        <span>⚡ ၂၄ နာရီ အရေးပေါ် မီးစက် ပြုပြင်ရေးနှင့် အငှားဝန်ဆောင်မှု ရန်ကုန် / မန္တလေး နှင့် နယ်ဝေး</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:09777888999" class="site-phone-primary hover:underline flex items-center gap-1 font-bold">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> 09 777 888 999
+        </a>
+        <a href="/login.html" class="opacity-80 hover:opacity-100 hover:underline flex items-center gap-1">
+          <i data-lucide="lock" class="w-3 h-3"></i> Admin Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="zap" class="w-7 h-7 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="font-extrabold text-2xl tracking-tight leading-none text-white flex items-center gap-1">
+              ZM <span class="gradient-text-amber">GENERATOR</span>
+            </div>
+            <p class="text-xs text-slate-400 font-medium tracking-wide mt-1">မီးစက် ရောင်း • ဝယ် • ငှား • ပြုပြင်</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="/" class="px-3 py-2 rounded-lg text-sm font-semibold text-amber-400 bg-amber-400/10">ပင်မစာမျက်နှာ</a>
+          <a href="/generators.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ရောင်းရန် မီးစက်များ</a>
+          <a href="/rentals.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် အငှား</a>
+          <a href="/sell.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် ပြန်ရောင်းရန်</a>
+          <a href="/repair.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+          <a href="/track.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-1">
+            <i data-lucide="search" class="w-4 h-4 text-amber-400"></i> အခြေအနေစစ်ဆေးရန်
+          </a>
+        </nav>
+
+        <!-- CTA & Contact -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="tel:09777888999" class="site-phone-primary flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition-all hover:shadow-amber-500/30">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>09 777 888 999</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-3 pb-5 space-y-2">
+      <a href="/" class="block px-3 py-2 rounded-lg text-base font-medium text-amber-400 bg-amber-400/10">ပင်မစာမျက်နှာ</a>
+      <a href="/generators.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">ရောင်းရန် မီးစက်များ</a>
+      <a href="/rentals.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">မီးစက် အငှား</a>
+      <a href="/sell.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">မီးစက် ပြန်ရောင်းရန်</a>
+      <a href="/repair.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+      <a href="/track.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">အခြေအနေ စစ်ဆေးရန်</a>
+      <div class="pt-3 border-t border-slate-800">
+        <a href="tel:09777888999" class="site-phone-primary flex items-center justify-center gap-2 w-full bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl">
+          <i data-lucide="phone" class="w-4 h-4"></i> တိုက်ရိုက်ခေါ်ဆိုရန်
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
+    <!-- Background Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-sky-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs sm:text-sm font-semibold">
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i>
+            <span>ဂျပန်တိုက်ရိုက် Secondhand စက်များ • စက်ပိုင်းစစ်ဆေးပြီး အာမခံ (၆) လ</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+            ယုံကြည်စိတ်ချရသော <br class="hidden sm:inline">
+            <span class="gradient-text-amber">မီးစက် ရောင်း/ဝယ်/ငှား</span> နှင့် <br>
+            <span class="text-sky-400">၂၄ နာရီ ပြုပြင်ရေး</span> ဝန်ဆောင်မှု
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            Denyo, Airman, Cummins, Perkins, Mitsubishi, Kubota အစရှိသော ဂျပန်နှင့် နာမည်ကြီး အမှတ်တံဆိပ် မီးစက်မျိုးစုံ (10 kVA မှ 500 kVA အထိ) အသင့်ရရှိနိုင်ပါသည်။ စက်ရုံ၊ ဆေးရုံ၊ ဟိုတယ်၊ ဆောက်လုပ်ရေးနှင့် အိမ်သုံး လုပ်ငန်းများအတွက် အထူးသင့်လျော်ပါသည်။
+          </p>
+
+          <!-- 4 Pillars Action Buttons -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <a href="/generators.html" class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 border border-amber-500/30 hover:border-amber-400 hover:bg-slate-800 transition group text-center">
+              <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm text-white">မီးစက် ဝယ်ယူရန်</span>
+              <span class="text-[11px] text-slate-400">Secondhand အရောင်း</span>
+            </a>
+
+            <a href="/rentals.html" class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 border border-sky-500/30 hover:border-sky-400 hover:bg-slate-800 transition group text-center">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm text-white">မီးစက် ငှားရမ်းရန်</span>
+              <span class="text-[11px] text-slate-400">ရက်တို / ရက်ရှည်</span>
+            </a>
+
+            <a href="/sell.html" class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 border border-emerald-500/30 hover:border-emerald-400 hover:bg-slate-800 transition group text-center">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                <i data-lucide="hand-coins" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm text-white">မီးစက် ပြန်ရောင်းမည်</span>
+              <span class="text-[11px] text-slate-400">ချက်ချင်း ငွေချေစနစ်</span>
+            </a>
+
+            <a href="/repair.html" class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 border border-rose-500/30 hover:border-rose-400 hover:bg-slate-800 transition group text-center">
+              <div class="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm text-white">ပြုပြင် ထိန်းသိမ်းရန်</span>
+              <span class="text-[11px] text-slate-400">၂၄ နာရီ ဝန်ဆောင်မှု</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span>စက်စစ်ဆေးပြီး အာမခံ (၆) လ</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span>အပိုပစ္စည်း စုံလင်မှု</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span>နယ်ဝေး ပို့ဆောင်/တပ်ဆင်ပေးခြင်း</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Featured Card / Visual Graphic -->
+        <div class="lg:col-span-5">
+          <div class="relative glass rounded-3xl p-6 sm:p-8 border border-slate-700/60 shadow-2xl overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex justify-between items-start mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                ⭐ Hot Deal
+              </span>
+              <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> အသင့်ရရှိနိုင်ပါသည်
+              </span>
+            </div>
+
+            <!-- Generator Preview Image -->
+            <div class="rounded-2xl overflow-hidden border border-slate-700 bg-slate-900/80 mb-6 aspect-video flex items-center justify-center">
+              <img src="/images/denyo-25kva.svg" alt="Denyo 25 kVA Silent Generator" class="w-full h-full object-cover">
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-1">Denyo 25 kVA DCA-25ESK Soundproof</h3>
+            <p class="text-xs text-slate-400 mb-4">Japan Reconditioned • 3,200 Running Hours • 3-Phase</p>
+
+            <div class="grid grid-cols-3 gap-2 py-3 px-4 rounded-xl bg-slate-900/90 border border-slate-800 text-center mb-6">
+              <div>
+                <span class="text-[11px] text-slate-400 block">ပါဝါ ပမာဏ</span>
+                <span class="font-bold text-sm text-amber-400">25 kVA / 20 kW</span>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 block">လောင်စာဆီ</span>
+                <span class="font-bold text-sm text-slate-200">Diesel (ဒီဇယ်)</span>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 block">အမျိုးအစား</span>
+                <span class="font-bold text-sm text-slate-200">Soundproof</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block">ရောင်းဈေးနှုန်း</span>
+                <span class="text-2xl font-black text-amber-400">၂၈၅ သိန်း</span>
+                <span class="text-[11px] text-slate-400 block">(ညှိနှိုင်းနိုင်သည်)</span>
+              </div>
+              <a href="/generators.html" class="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                <span>အသေးစိတ်ကြည့်ရန်</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Track Bar -->
+  <section class="max-w-5xl mx-auto px-4 -mt-6 sm:-mt-10 mb-16 relative z-20">
+    <div class="glass rounded-2xl p-4 sm:p-6 border border-slate-700/80 shadow-2xl">
+      <form action="/track.html" method="GET" class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input type="text" name="q" placeholder="လက်မှတ်ကုဒ် (ဥပမာ REP-..., SELL-..., RNT-...) သို့မဟုတ် ဖုန်းနံပါတ်ဖြင့် စစ်ဆေးရန်" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition">
+        </div>
+        <button type="submit" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold px-6 py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition shrink-0">
+          <i data-lucide="clipboard-check" class="w-4 h-4 text-amber-400"></i>
+          <span>အခြေအနေ စစ်ဆေးမည်</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Featured Generators Section -->
+  <section class="py-12 bg-slate-900/60 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> ရောင်းရန်ရှိသော Secondhand မီးစက်များ
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">အရည်အသွေးမြင့် ဂျပန်တစ်ပတ်ရစ် မီးစက်များ</h2>
+          <p class="text-sm text-slate-400 mt-1">အင်ဂျင်ဝိုင်၊ ဖီလ်တာနှင့် လျှပ်စစ်စနစ်များ အပြည့်အစုံ စစ်ဆေးပြီး အာမခံပါဝင်သည်</p>
+        </div>
+        <a href="/generators.html" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 hover:text-amber-300">
+          <span>မီးစက်အားလုံးကြည့်ရန် (All Catalog)</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Generator Grid Container -->
+      <div id="featured-generators-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Rendered dynamically by JavaScript -->
+        <div class="col-span-full py-12 text-center text-slate-400">
+          <div class="inline-block animate-spin mb-3">
+            <i data-lucide="loader-2" class="w-6 h-6 text-amber-400"></i>
+          </div>
+          <p>မီးစက်စာရင်းများ ရယူနေပါသည်...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rental Services Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20 inline-block mb-3">
+          ⚡ GENERATOR RENTAL SERVICE
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">မီးစက် အငှားဝန်ဆောင်မှု (ရက်တို / ရက်ရှည်)</h2>
+        <p class="text-slate-300 text-sm sm:text-base mt-3">
+          မင်္ဂလာပွဲ၊ ပွဲလမ်းသဘင်၊ ဆောက်လုပ်ရေးဆိုဒ်၊ စက်ရုံများနှင့် ပရောဂျက်ကြီးများအတွက် 15 kVA မှ 500 kVA အထိ အချိန်ပြည့် အော်ပရေတာ အပါအဝင် စိတ်ချစွာ ငှားရမ်းနိုင်ပါသည်။
+        </p>
+      </div>
+
+      <div id="featured-rentals-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Loaded dynamically -->
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/rentals.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg shadow-sky-600/30 transition">
+          <i data-lucide="calculator" class="w-4 h-4"></i>
+          <span>ငှားရမ်းခ တွက်ချက်ရန် နှင့် ဘိုကင်တင်ရန်</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repair & Maintenance Section -->
+  <section class="py-16 bg-slate-900/80 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/10 text-rose-400 border border-rose-500/20 inline-block">
+            🛠️ REPAIR & MAINTENANCE
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            ကျွမ်းကျင် အင်ဂျင်နီယာများ၏ <br>
+            <span class="gradient-text-amber">၂၄ နာရီ မီးစက် ပြုပြင်ရေး</span>
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            မီးစက်စတင်နှိုးမရခြင်း၊ ဆီခိုးမည်းထွက်ခြင်း၊ ဗို့အားမငြိမ်ခြင်း၊ ဒိုင်နမိုလောင်ခြင်းနှင့် ATS အလိုအလျောက် မီးကူးစနစ် ပြဿနာများကို နေရာအရောက် အမြန်ဆုံး လာရောက်စစ်ဆေး ပြုပြင်ပေးပါသည်။
+          </p>
+
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">✓</div>
+              <span>အရေးပေါ် စက်ရပ်တန့်မှုများကို အမြန်ဆုံး ဖြေရှင်းပေးခြင်း</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">✓</div>
+              <span>ပုံမှန် Periodic Service (အင်ဂျင်ဝိုင်၊ Filter လဲလှယ်ခြင်း)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">✓</div>
+              <span>Engine Overhaul & Alternator Rewinding (ဒိုင်နမိုပြန်ပတ်ခြင်း)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">✓</div>
+              <span>လုပ်ငန်းသုံး လစဉ်/နှစ်စဉ် ပုံမှန် ထိန်းသိမ်းရေး ကန်ထရိုက် (AMC)</span>
+            </li>
+          </ul>
+
+          <div class="pt-2 flex flex-wrap gap-4">
+            <a href="/repair.html" class="px-6 py-3 rounded-xl bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 text-white font-bold text-sm shadow-lg shadow-rose-600/30 transition flex items-center gap-2">
+              <i data-lucide="wrench" class="w-4 h-4"></i>
+              <span>ပြုပြင်ရန် တောင်းဆိုမည်</span>
+            </a>
+            <a href="tel:09777888999" class="site-phone-primary px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm flex items-center gap-2">
+              <i data-lucide="phone-call" class="w-4 h-4 text-rose-400"></i>
+              <span>အရေးပေါ် ဖုန်းခေါ်ဆိုရန်</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Repair Services Grid Cards -->
+        <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+          <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition">
+            <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center mb-4">
+              <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Emergency Breakdown</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">ဆေးရုံ၊ စက်ရုံနှင့် ပွဲလမ်းများတွင် မီးစက်ချက်ချင်းရပ်သွားပါက ၂၄ နာရီ နေရာအရောက် အရေးပေါ် ပြုပြင်ခြင်း။</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Wiring & ATS Panel</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">အလိုအလျောက် မီးကူးစနစ် (Auto Transfer Switch) တပ်ဆင်ခြင်းနှင့် DeepSea / SmartGen digital controller တပ်ဆင်ခြင်း။</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition">
+            <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center mb-4">
+              <i data-lucide="settings" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Engine Overhaul</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">မီးစက်အင်ဂျင် အသစ်စက်စက် အခြေအနေပြန်လည်ရရှိစေရန် Piston, Ring, Liner, Nozzle များကို စနစ်တကျ ပြန်လည်မွမ်းမံခြင်း။</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
+              <i data-lucide="rotate-cw" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Alternator Rewinding</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">ဒိုင်နမို ကွိုင်လောင်ခြင်း၊ ဗို့အားမထွက်ခြင်း၊ AVR ပျက်စီးခြင်းများကို မူလစံချိန်စံညွှန်းအတိုင်း ပြန်လည်ပတ်ပေးခြင်း။</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sell Your Generator Banner -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-amber-600 to-amber-700 p-8 sm:p-12 text-slate-950 shadow-2xl">
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-extrabold bg-slate-950 text-amber-400 mb-3">
+            💰 မိမိမီးစက် ပြန်လည်ရောင်းချရန်
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+            အသုံးမပြုတော့သော မီးစက်ဟောင်းများကို အကောင်းဆုံး ဈေးနှုန်းဖြင့် ဝယ်ယူပေးပါသည်
+          </h2>
+          <p class="text-slate-900 font-medium text-sm sm:text-base mb-6">
+            Denyo, Cummins, Airman, Perkins မီးစက်ဟောင်းများ၊ အခြေအနေမရွေး နေရာအရောက် စစ်ဆေးပြီး ချက်ချင်း လက်ငင်း ငွေချေစနစ်ဖြင့် အဆင်ပြေစွာ ဝယ်ယူပေးပါသည်။
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/sell.html" class="px-6 py-3.5 rounded-xl bg-slate-950 hover:bg-slate-900 text-white font-bold text-sm shadow-xl flex items-center gap-2">
+              <i data-lucide="upload" class="w-4 h-4 text-amber-400"></i>
+              <span>မီးစက် အချက်အလက် တင်ပြမည်</span>
+            </a>
+            <a href="tel:09777888999" class="site-phone-primary px-5 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm border-2 border-slate-950 flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              <span>တိုက်ရိုက် ဖုန်းဆက်မေးမည်</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-slate-950 border-t border-slate-800 pt-16 pb-12 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Col 1 -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 font-black">
+              <i data-lucide="zap" class="w-6 h-6 stroke-[2.5]"></i>
+            </div>
+            <span class="font-extrabold text-xl text-white">ZM GENERATOR</span>
+          </div>
+          <p class="text-xs leading-relaxed">
+            ဇေယျာမင်း မီးစက် ရောင်း/ဝယ်/ငှား နှင့် ၂၄ နာရီ ပြုပြင်ရေး ဝန်ဆောင်မှု။ ဂျပန်တစ်ပတ်ရစ် Secondhand မီးစက်များကို အရည်အသွေး အာမခံဖြင့် ဝန်ဆောင်မှုပေးနေပါသည်။
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" class="site-viber-link w-9 h-9 rounded-lg bg-slate-800 hover:bg-purple-600 hover:text-white flex items-center justify-center transition" title="Viber">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="site-telegram-link w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-600 hover:text-white flex items-center justify-center transition" title="Telegram">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </a>
+            <a href="tel:09777888999" class="site-phone-primary w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition" title="Phone">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">ဝန်ဆောင်မှုများ</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/generators.html" class="hover:text-amber-400 transition">ရောင်းရန် မီးစက်များ (Generators for Sale)</a></li>
+            <li><a href="/rentals.html" class="hover:text-amber-400 transition">မီးစက် အငှားဝန်ဆောင်မှု (Generator Rental)</a></li>
+            <li><a href="/sell.html" class="hover:text-amber-400 transition">မိမိမီးစက် ပြန်ရောင်းရန် (Sell Used Generator)</a></li>
+            <li><a href="/repair.html" class="hover:text-amber-400 transition">၂၄ နာရီ မီးစက် ပြုပြင်ရေး (24/7 Service)</a></li>
+            <li><a href="/track.html" class="hover:text-amber-400 transition">လက်မှတ်အခြေအနေ စစ်ဆေးရန် (Order Tracker)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Popular Brands -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">ရရှိနိုင်သော တံဆိပ်များ</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/generators.html?brand=Denyo" class="hover:text-amber-400 transition">Denyo (ဂျပန် မူရင်း အသံလုံ)</a></li>
+            <li><a href="/generators.html?brand=Airman" class="hover:text-amber-400 transition">Airman SDG စီးရီး မီးစက်များ</a></li>
+            <li><a href="/generators.html?brand=Cummins" class="hover:text-amber-400 transition">Cummins Heavy Duty မီးစက်များ</a></li>
+            <li><a href="/generators.html?brand=Perkins" class="hover:text-amber-400 transition">Perkins စက်မှုသုံး မီးစက်ကြီးများ</a></li>
+            <li><a href="/generators.html?brand=Kubota" class="hover:text-amber-400 transition">Kubota / Yanmar အသေးစား မီးစက်များ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact info -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">ဆက်သွယ်ရန်</h4>
+          <div class="flex items-start gap-2.5 text-xs">
+            <i data-lucide="map-pin" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+            <span class="site-address">အမှတ် (၄၅)၊ စက်မှုဇုန် (၂)၊ ဒဂုံမြို့သစ်တောင်ပိုင်း၊ ရန်ကုန်မြို့။</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-xs">
+            <i data-lucide="phone" class="w-4 h-4 text-amber-400 shrink-0"></i>
+            <span class="site-phone-primary">09 777 888 999</span>, <span class="site-phone-secondary">09 250 123 456</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-xs">
+            <i data-lucide="clock" class="w-4 h-4 text-amber-400 shrink-0"></i>
+            <span class="site-hours">တနင်္လာ - စနေ (၂၄ နာရီ အရေးပေါ်)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+        <p>© 2026 ZM Generator Web. All rights reserved. Powered by Node.js & SQLite.</p>
+        <div class="flex items-center gap-4">
+          <a href="/login.html" class="hover:text-amber-400 transition">Admin Portal</a>
+          <span>•</span>
+          <a href="/track.html" class="hover:text-amber-400 transition">Tracking</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Quick Viber / Call Button -->
+  <div class="fixed bottom-6 left-6 z-40 flex flex-col gap-3">
+    <a href="tel:09777888999" class="site-phone-primary w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center shadow-2xl transition hover:scale-110" title="Call Now">
+      <i data-lucide="phone-call" class="w-5 h-5"></i>
+    </a>
+  </div>
+
+  <!-- Shared Javascript -->
+  <script src="/js/main.js"></script>
+  <script>
+    // Fetch and render homepage featured generators
+    async function loadFeaturedGenerators() {
+      try {
+        const res = await fetch('/api/generators?featured=1');
+        const json = await res.json();
+        const container = document.getElementById('featured-generators-grid');
+        if (!container) return;
+
+        if (json.success && json.data.length > 0) {
+          container.innerHTML = json.data.slice(0, 4).map(g => `
+            <div class="glass rounded-2xl p-5 border border-slate-800 hover-card flex flex-col justify-between">
+              <div>
+                <div class="relative rounded-xl overflow-hidden bg-slate-900 aspect-video mb-4 border border-slate-800">
+                  <img src="${g.images[0] || '/images/denyo-25kva.svg'}" alt="${g.title}" class="w-full h-full object-cover">
+                  <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500 text-slate-950">
+                    ${g.capacity_kva} kVA
+                  </span>
+                  <span class="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-950/80 text-emerald-400 border border-emerald-500/30">
+                    ${g.condition}
+                  </span>
+                </div>
+
+                <div class="text-[11px] text-slate-400 font-medium mb-1">${g.brand} • ${g.type}</div>
+                <h3 class="font-bold text-white text-base leading-snug line-clamp-1 mb-2" title="${g.title}">
+                  ${g.title}
+                </h3>
+                
+                <div class="flex items-center gap-3 text-xs text-slate-400 mb-4">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> ${g.running_hours ? g.running_hours.toLocaleString() + ' နာရီ' : 'စစ်ဆေးပြီး'}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-400"></i> အာမခံ ${g.warranty_months} လ
+                  </span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block">ဈေးနှုန်း</span>
+                  <span class="text-lg font-black text-amber-400">${formatPrice(g.price_lakhs)}</span>
+                </div>
+                <a href="/generators.html?id=${g.id}" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-bold text-xs transition">
+                  ကြည့်ရှုမည်
+                </a>
+              </div>
+            </div>
+          `).join('');
+          lucide.createIcons();
+        }
+      } catch (e) {
+        console.error('Failed to load featured generators:', e);
+      }
+    }
+
+    // Load featured rentals
+    async function loadFeaturedRentals() {
+      try {
+        const res = await fetch('/api/rentals');
+        const json = await res.json();
+        const container = document.getElementById('featured-rentals-grid');
+        if (!container) return;
+
+        if (json.success && json.data.length > 0) {
+          container.innerHTML = json.data.slice(0, 3).map(r => `
+            <div class="glass rounded-2xl p-6 border border-slate-800 hover-card flex flex-col justify-between">
+              <div>
+                <div class="w-full aspect-video rounded-xl overflow-hidden bg-slate-900 mb-5 border border-slate-800">
+                  <img src="${r.image || '/images/rental-25kva.svg'}" alt="${r.title}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-bold text-sky-400 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20">
+                    ${r.capacity_kva} kVA Capacity
+                  </span>
+                  <span class="text-xs text-slate-400">${r.type}</span>
+                </div>
+                <h3 class="font-bold text-white text-lg mb-2">${r.title}</h3>
+                <p class="text-xs text-slate-400 line-clamp-2 mb-4 leading-relaxed">${r.description}</p>
+              </div>
+
+              <div class="pt-4 border-t border-slate-800">
+                <div class="flex justify-between items-baseline mb-4">
+                  <div>
+                    <span class="text-[11px] text-slate-400 block">၁ ရက် ငှားရမ်းခ</span>
+                    <span class="text-xl font-black text-sky-400">${r.daily_rate_lakhs ? r.daily_rate_lakhs + ' သိန်း' : 'ညှိနှိုင်း'}</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[11px] text-slate-400 block">၁ လ ငှားရမ်းခ</span>
+                    <span class="text-base font-bold text-slate-200">${r.monthly_rate_lakhs ? r.monthly_rate_lakhs + ' သိန်း' : '-'}</span>
+                  </div>
+                </div>
+
+                <a href="/rentals.html" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-sky-500 hover:text-white text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                  <span>ဘိုကင်တင်ရန် (Book Now)</span>
+                </a>
+              </div>
+            </div>
+          `).join('');
+          lucide.createIcons();
+        }
+      } catch (e) {
+        console.error('Failed to load rentals:', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadFeaturedGenerators();
+      loadFeaturedRentals();
+    });
+  </script>
+</body>
+</html>

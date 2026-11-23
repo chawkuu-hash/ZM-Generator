@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ZM Generator စီမံခန့်ခွဲရေး စနစ်</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Top Admin Bar -->
+  <header class="sticky top-0 z-40 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black">
+            <i data-lucide="shield" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-extrabold text-base text-white">ZM ADMIN</span>
+            <span class="text-[10px] text-amber-400 font-bold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 ml-2">CONTROL PANEL</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href="/" target="_blank" class="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 transition">
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span>ဝက်ဘ်ဆိုက် ကြည့်ရန်</span>
+          </a>
+
+          <div class="flex items-center gap-2 pl-2 border-l border-slate-800">
+            <span class="text-xs font-semibold text-slate-300" id="admin-user-name">စီမံခန့်ခွဲသူ</span>
+            <button id="btn-logout" class="p-1.5 text-slate-400 hover:text-rose-400 rounded-lg hover:bg-slate-800 transition" title="Log Out">
+              <i data-lucide="log-out" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+    <!-- Top Stats Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" id="stats-cards-container">
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <span class="text-xs text-slate-400 block mb-1">ရောင်းရန် မီးစက်များ</span>
+        <div class="text-2xl font-black text-amber-400" id="stat-gen-available">0</div>
+        <span class="text-[10px] text-slate-500" id="stat-gen-total">စုစုပေါင်း 0 ခု</span>
+      </div>
+
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <span class="text-xs text-slate-400 block mb-1">အငှား ဘိုကင်များ</span>
+        <div class="text-2xl font-black text-sky-400" id="stat-rental-pending">0</div>
+        <span class="text-[10px] text-slate-500" id="stat-rental-total">စုစုပေါင်း 0 ခု</span>
+      </div>
+
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <span class="text-xs text-slate-400 block mb-1">ပြုပြင်ရေး လက်မှတ်များ</span>
+        <div class="text-2xl font-black text-rose-400" id="stat-repair-pending">0</div>
+        <span class="text-[10px] text-slate-500" id="stat-repair-total">စုစုပေါင်း 0 ခု</span>
+      </div>
+
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <span class="text-xs text-slate-400 block mb-1">မီးစက်ရောင်းရန် တင်ပြချက်</span>
+        <div class="text-2xl font-black text-emerald-400" id="stat-sell-pending">0</div>
+        <span class="text-[10px] text-slate-500" id="stat-sell-total">စုစုပေါင်း 0 ခု</span>
+      </div>
+
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <span class="text-xs text-slate-400 block mb-1">ဝယ်ယူရန် မေးမြန်းမှုများ</span>
+        <div class="text-2xl font-black text-purple-400" id="stat-order-pending">0</div>
+        <span class="text-[10px] text-slate-500" id="stat-order-total">စုစုပေါင်း 0 ခု</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+      <button class="admin-tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 bg-amber-500 text-slate-950 transition" data-tab="tab-generators">
+        <i data-lucide="layers" class="w-4 h-4"></i> မီးစက်စာရင်းများ
+      </button>
+      <button class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 transition" data-tab="tab-rentals">
+        <i data-lucide="calendar" class="w-4 h-4"></i> အငှား ဘိုကင်များ
+      </button>
+      <button class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 transition" data-tab="tab-repairs">
+        <i data-lucide="wrench" class="w-4 h-4"></i> ပြုပြင်ရေး လက်မှတ်များ
+      </button>
+      <button class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 transition" data-tab="tab-sells">
+        <i data-lucide="hand-coins" class="w-4 h-4"></i> မီးစက်အရောင်း တင်ပြချက်များ
+      </button>
+      <button class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 transition" data-tab="tab-orders">
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i> အမှာစာများ (Orders)
+      </button>
+      <button class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 transition" data-tab="tab-settings">
+        <i data-lucide="settings" class="w-4 h-4"></i> ဆက်တင်များ
+      </button>
+    </div>
+
+    <!-- TAB 1: GENERATORS MANAGEMENT -->
+    <div id="tab-generators" class="admin-tab-content space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-white">ရောင်းရန် မီးစက်များ စီမံခန့်ခွဲမှု</h3>
+          <p class="text-xs text-slate-400">မီးစက်အသစ် ထည့်သွင်းခြင်း၊ ပြင်ဆင်ခြင်းနှင့် ရောင်းပြီး/မပြီး သတ်မှတ်ခြင်း</p>
+        </div>
+        <button id="btn-add-generator" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition shadow-lg shadow-amber-500/20">
+          <i data-lucide="plus" class="w-4 h-4"></i> မီးစက်အသစ် ထည့်သွင်းမည်
+        </button>
+      </div>
+
+      <div class="glass rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">ဓာတ်ပုံ</th>
+                <th class="p-3.5">အမည် / မော်ဒယ်</th>
+                <th class="p-3.5">တံဆိပ် / kVA</th>
+                <th class="p-3.5">ဈေးနှုန်း (သိန်း)</th>
+                <th class="p-3.5">နာရီ / အခြေအနေ</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">လုပ်ဆောင်ချက်</th>
+              </tr>
+            </thead>
+            <tbody id="admin-generators-table" class="divide-y divide-slate-800 text-slate-300">
+              <!-- Loaded via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: RENTALS MANAGEMENT -->
+    <div id="tab-rentals" class="admin-tab-content hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-white">မီးစက် အငှား ဘိုကင်များ စီမံခန့်ခွဲမှု</h3>
+          <p class="text-xs text-slate-400">သုံးစွဲသူများထံမှ တင်ပြလာသော အငှားတောင်းဆိုချက်များ</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">ဘိုကင်ကုဒ်</th>
+                <th class="p-3.5">အမည် / ဖုန်း</th>
+                <th class="p-3.5">ငှားရမ်းမည့်ရက်စွဲ</th>
+                <th class="p-3.5">ပို့ဆောင်ရမည့်လိပ်စာ</th>
+                <th class="p-3.5">ခန့်မှန်းတန်ဖိုး</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">ပြောင်းလဲရန်</th>
+              </tr>
+            </thead>
+            <tbody id="admin-rentals-table" class="divide-y divide-slate-800 text-slate-300">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: REPAIRS MANAGEMENT -->
+    <div id="tab-repairs" class="admin-tab-content hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-white">ပြုပြင်ရေး လက်မှတ်များ (Repair Service Tickets)</h3>
+          <p class="text-xs text-slate-400">အင်ဂျင်နီယာ တာဝန်ပေးခြင်းနှင့် ကုန်ကျစရိတ် မှတ်တမ်းတင်ခြင်း</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">လက်မှတ်ကုဒ်</th>
+                <th class="p-3.5">အမည် / ဖုန်း / လိပ်စာ</th>
+                <th class="p-3.5">စက်အမျိုးအစား / ပြဿနာ</th>
+                <th class="p-3.5">အရေးပေါ်အဆင့်</th>
+                <th class="p-3.5">တာဝန်ကျအင်ဂျင်နီယာ</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">စီမံရန်</th>
+              </tr>
+            </thead>
+            <tbody id="admin-repairs-table" class="divide-y divide-slate-800 text-slate-300">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: SELLS MANAGEMENT -->
+    <div id="tab-sells" class="admin-tab-content hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-white">မီးစက်ပြန်ရောင်းရန် တင်ပြချက်များ (Customer Submissions)</h3>
+          <p class="text-xs text-slate-400">သုံးစွဲသူများမှ ရောင်းချလိုသော စက်ဟောင်း အချက်အလက်များ</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">ကုဒ်</th>
+                <th class="p-3.5">ရောင်းချသူ / ဖုန်း</th>
+                <th class="p-3.5">မီးစက် / kVA</th>
+                <th class="p-3.5">မျှော်မှန်းရောင်းဈေး</th>
+                <th class="p-3.5">စက်အခြေအနေ</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">ပြောင်းလဲရန်</th>
+              </tr>
+            </thead>
+            <tbody id="admin-sells-table" class="divide-y divide-slate-800 text-slate-300">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ORDERS MANAGEMENT -->
+    <div id="tab-orders" class="admin-tab-content hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-white">မီးစက် ဝယ်ယူရန် မေးမြန်းမှုများ (Purchase Orders)</h3>
+          <p class="text-xs text-slate-400">ဝက်ဘ်ဆိုက်မှ မီးစက်ဝယ်ယူရန် တောင်းဆိုထားသော အမှာစာများ</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">အမှာစာကုဒ်</th>
+                <th class="p-3.5">ဝယ်ယူသူ / ဖုန်း</th>
+                <th class="p-3.5">မီးစက် အမည်</th>
+                <th class="p-3.5">ပို့ဆောင်မည့်နေရာ</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">ပြောင်းလဲရန်</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-table" class="divide-y divide-slate-800 text-slate-300">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: SETTINGS -->
+    <div id="tab-settings" class="admin-tab-content hidden space-y-6">
+      <div class="glass rounded-3xl p-6 sm:p-8 border border-slate-800 max-w-2xl space-y-6">
+        <div>
+          <h3 class="text-lg font-bold text-white">ကုမ္ပဏီ ဆက်သွယ်ရန် ဆက်တင်များ</h3>
+          <p class="text-xs text-slate-400">ဝက်ဘ်ဆိုက်တွင် ပြသနေသော ဖုန်းနံပါတ်နှင့် လိပ်စာများကို ပြင်ဆင်ရန်</p>
+        </div>
+
+        <form id="settings-form" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">အဓိက ဆက်သွယ်ရန် ဖုန်း (Primary)</label>
+            <input type="text" name="phone_primary" id="set-phone-primary" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">ဒုတိယ ဖုန်းနံပါတ် (Secondary)</label>
+            <input type="text" name="phone_secondary" id="set-phone-secondary" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Viber ဖုန်းနံပါတ်</label>
+            <input type="text" name="viber_phone" id="set-viber" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Telegram အကောင့် (Username)</label>
+            <input type="text" name="telegram_username" id="set-telegram" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">ကုမ္ပဏီ တည်နေရာ လိပ်စာ</label>
+            <input type="text" name="address" id="set-address" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">လုပ်ငန်းချိန် ဖော်ပြချက်</label>
+            <input type="text" name="operating_hours" id="set-hours" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="save" class="w-4 h-4"></i> ဆက်တင်များ သိမ်းဆည်းမည်
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Generator Modal -->
+  <div id="gen-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="relative w-full max-w-2xl glass rounded-2xl border border-slate-700 p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl space-y-4">
+      <button id="btn-close-gen-modal" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="text-lg font-bold text-white" id="gen-modal-title">မီးစက်အသစ် ထည့်သွင်းရန်</h3>
+
+      <form id="gen-form" class="space-y-4" enctype="multipart/form-data">
+        <input type="hidden" id="edit-gen-id" name="id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">မီးစက်အမည် (Title) *</label>
+          <input type="text" name="title" id="form-gen-title" required placeholder="Denyo 25 kVA DCA-25ESK Soundproof..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">အမှတ်တံဆိပ် *</label>
+            <select name="brand" id="form-gen-brand" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="Denyo">Denyo</option>
+              <option value="Airman">Airman</option>
+              <option value="Cummins">Cummins</option>
+              <option value="Perkins">Perkins</option>
+              <option value="Kubota">Kubota</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Yanmar">Yanmar</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">ပါဝါ (kVA) *</label>
+            <input type="number" name="capacity_kva" id="form-gen-kva" required placeholder="25" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">ရောင်းဈေး (သိန်း) *</label>
+            <input type="number" name="price_lakhs" id="form-gen-price" required placeholder="285" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">မော်ဒယ် (Model)</label>
+            <input type="text" name="model" id="form-gen-model" placeholder="DCA-25ESK" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">လည်ပတ်နာရီ (Hours)</label>
+            <input type="number" name="running_hours" id="form-gen-hours" placeholder="3200" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">အာမခံ (လ)</label>
+            <input type="number" name="warranty_months" id="form-gen-warranty" value="6" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">စက်အမျိုးအစား</label>
+            <select name="type" id="form-gen-type" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="Soundproof">Soundproof (အသံလုံ)</option>
+              <option value="Open">Open Type (ဗူးမဲ့)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Phase</label>
+            <select name="phase" id="form-gen-phase" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="3-Phase">3-Phase (400V/230V)</option>
+              <option value="Single Phase">Single Phase (220V)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">စက်အခြေအနေ</label>
+            <input type="text" name="condition" id="form-gen-condition" value="Japan Reconditioned (92%)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">မီးစက် အသေးစိတ် ရှင်းလင်းချက်</label>
+          <textarea name="description" id="form-gen-desc" rows="3" placeholder="ဂျပန်အသုံပြီး Original ဆေးသား၊ အသံလုံ ဗူးပါ..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ဓာတ်ပုံများ တင်ရန် (Photos Upload)</label>
+          <input type="file" name="photos" multiple accept="image/*" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-400">
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+          <i data-lucide="check" class="w-4 h-4"></i> သိမ်းဆည်းမည် (Save Generator)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Repair Ticket Edit Modal -->
+  <div id="repair-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="relative w-full max-w-md glass rounded-2xl border border-slate-700 p-6 space-y-4">
+      <button id="btn-close-repair-modal" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="text-base font-bold text-white">ပြုပြင်ရေးလက်မှတ် အခြေအနေ ပြင်ဆင်ရန်</h3>
+
+      <form id="repair-edit-form" class="space-y-3">
+        <input type="hidden" id="repair-ticket-id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Status ပြောင်းလဲရန်</label>
+          <select id="repair-modal-status" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+            <option value="pending">လက်ခံဆဲ (Pending)</option>
+            <option value="inspected">စစ်ဆေးဆဲ (Inspected)</option>
+            <option value="in_progress">ပြုပြင်နေဆဲ (In Progress)</option>
+            <option value="completed">ပြုပြင်ပြီးစီး (Completed)</option>
+            <option value="cancelled">ပယ်ဖျက် (Cancelled)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">တာဝန်ကျ အင်ဂျင်နီယာ အမည်</label>
+          <input type="text" id="repair-modal-tech" placeholder="ကိုကျော်ဇင် (Senior Tech)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ခန့်မှန်း ကုန်ကျစရိတ် (ကျပ်)</label>
+          <input type="number" id="repair-modal-cost" placeholder="150000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Admin မှတ်ချက်</label>
+          <textarea id="repair-modal-notes" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs">
+          ပြင်ဆင်ချက် သိမ်းဆည်းမည်
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Tab switching
+    const tabBtns = document.querySelectorAll('.admin-tab-btn');
+    const tabContents = document.querySelectorAll('.admin-tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => {
+          b.classList.remove('active', 'bg-amber-500', 'text-slate-950');
+          b.classList.add('bg-slate-900', 'text-slate-300');
+        });
+        tabContents.forEach(c => c.classList.add('hidden'));
+
+        btn.classList.add('active', 'bg-amber-500', 'text-slate-950');
+        btn.classList.remove('bg-slate-900', 'text-slate-300');
+
+        const targetId = btn.dataset.tab;
+        document.getElementById(targetId).classList.remove('hidden');
+      });
+    });
+
+    // Check Auth
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const json = await res.json();
+        if (!json.authenticated) {
+          window.location.href = '/login.html';
+          return;
+        }
+        document.getElementById('admin-user-name').textContent = json.user.name || 'Admin';
+      } catch (err) {
+        window.location.href = '/login.html';
+      }
+    }
+
+    // Logout
+    document.getElementById('btn-logout').addEventListener('click', async () => {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/login.html';
+    });
+
+    // Fetch Stats
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats/dashboard');
+        const json = await res.json();
+        if (json.success) {
+          const m = json.metrics;
+          document.getElementById('stat-gen-available').textContent = m.generators.available;
+          document.getElementById('stat-gen-total').textContent = `စုစုပေါင်း ${m.generators.total} ခု`;
+
+          document.getElementById('stat-rental-pending').textContent = m.rentals.pending;
+          document.getElementById('stat-rental-total').textContent = `စုစုပေါင်း ${m.rentals.total} ခု`;
+
+          document.getElementById('stat-repair-pending').textContent = m.repairs.pending;
+          document.getElementById('stat-repair-total').textContent = `စုစုပေါင်း ${m.repairs.total} ခု`;
+
+          document.getElementById('stat-sell-pending').textContent = m.sells.pending;
+          document.getElementById('stat-sell-total').textContent = `စုစုပေါင်း ${m.sells.total} ခု`;
+
+          document.getElementById('stat-order-pending').textContent = m.orders.pending;
+          document.getElementById('stat-order-total').textContent = `စုစုပေါင်း ${m.orders.total} ခု`;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // 1. Generators Admin Table
+    async function loadGeneratorsTable() {
+      try {
+        const res = await fetch('/api/generators');
+        const json = await res.json();
+        if (json.success) {
+          const tbody = document.getElementById('admin-generators-table');
+          tbody.innerHTML = json.data.map(g => `
+            <tr class="hover:bg-slate-900/60 transition">
+              <td class="p-3.5">
+                <img src="${g.images[0] || '/images/denyo-25kva.svg'}" class="w-14 h-9 rounded object-cover border border-slate-800">
+              </td>
+              <td class="p-3.5">
+                <span class="font-bold text-white block">${g.title}</span>
+                <span class="text-[10px] text-slate-400">${g.model || '-'}</span>
+              </td>
+              <td class="p-3.5">
+                <span class="font-semibold text-amber-400">${g.brand}</span>
+                <span class="text-[11px] text-slate-300 block">${g.capacity_kva} kVA</span>
+              </td>
+              <td class="p-3.5 font-bold text-white">${formatPrice(g.price_lakhs)}</td>
+              <td class="p-3.5">
+                <span class="text-slate-300 block">${g.running_hours ? g.running_hours.toLocaleString() + ' hrs' : '-'}</span>
+                <span class="text-[10px] text-slate-400">${g.condition}</span>
+              </td>
+              <td class="p-3.5">
+                <select onchange="updateGenStatus(${g.id}, this.value)" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-[11px] font-semibold ${g.status === 'available' ? 'text-emerald-400' : (g.status === 'sold' ? 'text-rose-400' : 'text-amber-400')}">
+                  <option value="available" ${g.status === 'available' ? 'selected' : ''}>Available</option>
+                  <option value="reserved" ${g.status === 'reserved' ? 'selected' : ''}>Reserved</option>
+                  <option value="sold" ${g.status === 'sold' ? 'selected' : ''}>Sold (ရောင်းပြီး)</option>
+                </select>
+              </td>
+              <td class="p-3.5 text-right space-x-1">
+                <button onclick="editGenerator(${g.id})" class="p-1 text-slate-400 hover:text-amber-400" title="Edit">
+                  <i data-lucide="edit" class="w-4 h-4"></i>
+                </button>
+                <button onclick="deleteGenerator(${g.id})" class="p-1 text-slate-400 hover:text-rose-400" title="Delete">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </td>
+            </tr>
+          `).join('');
+          lucide.createIcons();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function updateGenStatus(id, status) {
+      try {
+        const res = await fetch(`/api/generators/${id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Status ပြောင်းလဲပြီးပါပြီ');
+          loadStats();
+        }
+      } catch (err) {
+        showToast('အမှားဖြစ်ပေါ်နေပါသည်', 'error');
+      }
+    }
+
+    async function deleteGenerator(id) {
+      if (!confirm('ဤမီးစက်ကို ဖျက်ပစ်ရန် သေချာပါသလား?')) return;
+      try {
+        const res = await fetch(`/api/generators/${id}`, { method: 'DELETE' });
+        const json = await res.json();
+        if (json.success) {
+          showToast('မီးစက်ကို ဖျက်ပစ်ပြီးပါပြီ');
+          loadGeneratorsTable();
+          loadStats();
+        }
+      } catch (e) {
+        showToast('ဖျက်ပစ်မရပါ', 'error');
+      }
+    }
+
+    // Add / Edit Generator Modal logic
+    const genModal = document.getElementById('gen-modal');
+    const genForm = document.getElementById('gen-form');
+
+    document.getElementById('btn-add-generator').addEventListener('click', () => {
+      genForm.reset();
+      document.getElementById('edit-gen-id').value = '';
+      document.getElementById('gen-modal-title').textContent = 'မီးစက်အသစ် ထည့်သွင်းရန်';
+      genModal.classList.remove('hidden');
+    });
+
+    document.getElementById('btn-close-gen-modal').addEventListener('click', () => {
+      genModal.classList.add('hidden');
+    });
+
+    async function editGenerator(id) {
+      try {
+        const res = await fetch(`/api/generators/${id}`);
+        const json = await res.json();
+        if (json.success) {
+          const g = json.data;
+          document.getElementById('edit-gen-id').value = g.id;
+          document.getElementById('form-gen-title').value = g.title;
+          document.getElementById('form-gen-brand').value = g.brand;
+          document.getElementById('form-gen-kva').value = g.capacity_kva;
+          document.getElementById('form-gen-price').value = g.price_lakhs;
+          document.getElementById('form-gen-model').value = g.model || '';
+          document.getElementById('form-gen-hours').value = g.running_hours || '';
+          document.getElementById('form-gen-warranty').value = g.warranty_months || 6;
+          document.getElementById('form-gen-type').value = g.type || 'Soundproof';
+          document.getElementById('form-gen-phase').value = g.phase || '3-Phase';
+          document.getElementById('form-gen-condition').value = g.condition || '';
+          document.getElementById('form-gen-desc').value = g.description || '';
+
+          document.getElementById('gen-modal-title').textContent = 'မီးစက် အချက်အလက် ပြင်ဆင်ရန်';
+          genModal.classList.remove('hidden');
+        }
+      } catch (err) {
+        showToast('အချက်အလက် ရယူမရပါ', 'error');
+      }
+    }
+
+    genForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('edit-gen-id').value;
+      const formData = new FormData(genForm);
+
+      try {
+        const url = id ? `/api/generators/${id}` : '/api/generators';
+        const method = id ? 'PUT' : 'POST';
+
+        const res = await fetch(url, {
+          method,
+          body: formData
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(json.message);
+          genModal.classList.add('hidden');
+          loadGeneratorsTable();
+          loadStats();
+        } else {
+          showToast(json.error || 'အမှားဖြစ်ပေါ်နေပါသည်', 'error');
+        }
+      } catch (err) {
+        showToast('ဆာဗာသို့ ပေးပို့မရပါ', 'error');
+      }
+    });
+
+    // 2. Rentals Table
+    async function loadRentalsTable() {
+      try {
+        const res = await fetch('/api/rentals/bookings');
+        const json = await res.json();
+        if (json.success) {
+          const tbody = document.getElementById('admin-rentals-table');
+          tbody.innerHTML = json.data.map(b => `
+            <tr class="hover:bg-slate-900/60 transition">
+              <td class="p-3.5 font-mono font-bold text-amber-400">${b.booking_code}</td>
+              <td class="p-3.5">
+                <span class="font-semibold text-white block">${b.customer_name}</span>
+                <span class="text-slate-400">${b.customer_phone}</span>
+              </td>
+              <td class="p-3.5 text-slate-300">${b.start_date} မှ ${b.end_date}</td>
+              <td class="p-3.5 text-slate-300 max-w-xs truncate" title="${b.delivery_address}">${b.delivery_address}</td>
+              <td class="p-3.5 font-bold text-sky-400">${b.total_estimated_price ? b.total_estimated_price + ' သိန်း' : '-'}</td>
+              <td class="p-3.5 font-semibold">
+                <span class="px-2 py-0.5 rounded text-[11px] ${b.status === 'confirmed' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}">
+                  ${b.status}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <select onchange="updateBookingStatus(${b.id}, this.value)" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-white">
+                  <option value="pending" ${b.status === 'pending' ? 'selected' : ''}>Pending</option>
+                  <option value="confirmed" ${b.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                  <option value="ongoing" ${b.status === 'ongoing' ? 'selected' : ''}>Ongoing</option>
+                  <option value="completed" ${b.status === 'completed' ? 'selected' : ''}>Completed</option>
+                  <option value="cancelled" ${b.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                </select>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function updateBookingStatus(id, status) {
+      await fetch(`/api/rentals/bookings/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      showToast('ဘိုကင် status ပြောင်းလဲပြီးပါပြီ');
+      loadStats();
+    }
+
+    // 3. Repairs Table
+    async function loadRepairsTable() {
+      try {
+        const res = await fetch('/api/repairs');
+        const json = await res.json();
+        if (json.success) {
+          const tbody = document.getElementById('admin-repairs-table');
+          tbody.innerHTML = json.data.map(r => `
+            <tr class="hover:bg-slate-900/60 transition">
+              <td class="p-3.5 font-mono font-bold text-rose-400">${r.ticket_code}</td>
+              <td class="p-3.5">
+                <span class="font-semibold text-white block">${r.customer_name}</span>
+                <span class="text-slate-400">${r.customer_phone}</span>
+                <span class="text-[10px] text-slate-500 block">${r.customer_address}</span>
+              </td>
+              <td class="p-3.5">
+                <span class="font-bold text-amber-400">${r.generator_brand || 'စက်'} (${r.generator_capacity_kva || '-'} kVA)</span>
+                <p class="text-[11px] text-slate-300 line-clamp-1">${r.issue_description}</p>
+              </td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/20 text-rose-300">
+                  ${r.urgency_level}
+                </span>
+              </td>
+              <td class="p-3.5 text-slate-300">${r.technician_assigned || 'မသတ်မှတ်ရသေး'}</td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 text-slate-300">
+                  ${r.status}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <button onclick="openRepairModal(${r.id}, '${r.status}', '${r.technician_assigned || ''}', '${r.cost_estimate_mmk || 0}', '${(r.admin_notes || '').replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold text-xs">
+                  ပြင်ဆင်ရန်
+                </button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    const repairModal = document.getElementById('repair-edit-modal');
+    function openRepairModal(id, status, tech, cost, notes) {
+      document.getElementById('repair-ticket-id').value = id;
+      document.getElementById('repair-modal-status').value = status;
+      document.getElementById('repair-modal-tech').value = tech;
+      document.getElementById('repair-modal-cost').value = cost;
+      document.getElementById('repair-modal-notes').value = notes;
+      repairModal.classList.remove('hidden');
+    }
+
+    document.getElementById('btn-close-repair-modal').addEventListener('click', () => {
+      repairModal.classList.add('hidden');
+    });
+
+    document.getElementById('repair-edit-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('repair-ticket-id').value;
+      const data = {
+        status: document.getElementById('repair-modal-status').value,
+        technician_assigned: document.getElementById('repair-modal-tech').value,
+        cost_estimate_mmk: document.getElementById('repair-modal-cost').value,
+        admin_notes: document.getElementById('repair-modal-notes').value
+      };
+
+      try {
+        const res = await fetch(`/api/repairs/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(json.message);
+          repairModal.classList.add('hidden');
+          loadRepairsTable();
+          loadStats();
+        }
+      } catch (err) {
+        showToast('အမှားဖြစ်ပေါ်နေပါသည်', 'error');
+      }
+    });
+
+    // 4. Sells Table
+    async function loadSellsTable() {
+      try {
+        const res = await fetch('/api/sell');
+        const json = await res.json();
+        if (json.success) {
+          const tbody = document.getElementById('admin-sells-table');
+          tbody.innerHTML = json.data.map(s => `
+            <tr class="hover:bg-slate-900/60 transition">
+              <td class="p-3.5 font-mono font-bold text-emerald-400">${s.submission_code}</td>
+              <td class="p-3.5">
+                <span class="font-semibold text-white block">${s.seller_name}</span>
+                <span class="text-slate-400">${s.seller_phone} • ${s.location}</span>
+              </td>
+              <td class="p-3.5 font-bold text-amber-400">${s.brand} (${s.capacity_kva} kVA)</td>
+              <td class="p-3.5 font-bold text-white">${s.expected_price_lakhs ? s.expected_price_lakhs + ' သိန်း' : '-'}</td>
+              <td class="p-3.5 text-slate-300 max-w-xs truncate" title="${s.condition_description}">${s.condition_description}</td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/20 text-emerald-300">
+                  ${s.status}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <select onchange="updateSellStatus(${s.id}, this.value)" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-white">
+                  <option value="pending" ${s.status === 'pending' ? 'selected' : ''}>Pending</option>
+                  <option value="reviewing" ${s.status === 'reviewing' ? 'selected' : ''}>Reviewing</option>
+                  <option value="contacted" ${s.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                  <option value="purchased" ${s.status === 'purchased' ? 'selected' : ''}>Purchased</option>
+                  <option value="rejected" ${s.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                </select>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function updateSellStatus(id, status) {
+      await fetch(`/api/sell/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      showToast('အခြေအနေ ပြောင်းလဲပြီးပါပြီ');
+      loadStats();
+    }
+
+    // 5. Orders Table
+    async function loadOrdersTable() {
+      try {
+        const res = await fetch('/api/orders');
+        const json = await res.json();
+        if (json.success) {
+          const tbody = document.getElementById('admin-orders-table');
+          tbody.innerHTML = json.data.map(o => `
+            <tr class="hover:bg-slate-900/60 transition">
+              <td class="p-3.5 font-mono font-bold text-amber-400">${o.order_code}</td>
+              <td class="p-3.5">
+                <span class="font-semibold text-white block">${o.customer_name}</span>
+                <span class="text-slate-400">${o.customer_phone}</span>
+              </td>
+              <td class="p-3.5 font-bold text-white">${o.generator_title || 'Generator #' + o.generator_id}</td>
+              <td class="p-3.5 text-slate-300">${o.delivery_address || '-'}</td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-500/20 text-purple-300">
+                  ${o.status}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <select onchange="updateOrderStatus(${o.id}, this.value)" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-white">
+                  <option value="new_inquiry" ${o.status === 'new_inquiry' ? 'selected' : ''}>New Inquiry</option>
+                  <option value="contacted" ${o.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                  <option value="deal_closed" ${o.status === 'deal_closed' ? 'selected' : ''}>Deal Closed</option>
+                  <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                </select>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function updateOrderStatus(id, status) {
+      await fetch(`/api/orders/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      showToast('အမှာစာ status ပြောင်းလဲပြီးပါပြီ');
+      loadStats();
+    }
+
+    // 6. Settings Form
+    async function loadSettingsForm() {
+      try {
+        const res = await fetch('/api/settings');
+        const json = await res.json();
+        if (json.success && json.data) {
+          const d = json.data;
+          document.getElementById('set-phone-primary').value = d.phone_primary || '';
+          document.getElementById('set-phone-secondary').value = d.phone_secondary || '';
+          document.getElementById('set-viber').value = d.viber_phone || '';
+          document.getElementById('set-telegram').value = d.telegram_username || '';
+          document.getElementById('set-address').value = d.address || '';
+          document.getElementById('set-hours').value = d.operating_hours || '';
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    document.getElementById('settings-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        phone_primary: form.phone_primary.value,
+        phone_secondary: form.phone_secondary.value,
+        viber_phone: form.viber_phone.value,
+        telegram_username: form.telegram_username.value,
+        address: form.address.value,
+        operating_hours: form.operating_hours.value
+      };
+
+      try {
+        const res = await fetch('/api/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(json.message);
+        }
+      } catch (err) {
+        showToast('ဆက်တင်များ သိမ်းမရပါ', 'error');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      checkAuth();
+      loadStats();
+      loadGeneratorsTable();
+      loadRentalsTable();
+      loadRepairsTable();
+      loadSellsTable();
+      loadOrdersTable();
+      loadSettingsForm();
+    });
+  </script>
+</body>
+</html>

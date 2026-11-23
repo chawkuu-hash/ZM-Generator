@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ရောင်းရန်ရှိသော ဂျပန်တစ်ပတ်ရစ် မီးစက်များ | ZM Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20">
+            <i data-lucide="zap" class="w-6 h-6 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="font-extrabold text-xl tracking-tight leading-none text-white">ZM <span class="gradient-text-amber">GENERATOR</span></div>
+            <p class="text-[11px] text-slate-400 font-medium mt-1">မီးစက် ရောင်း • ဝယ် • ငှား • ပြုပြင်</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပင်မစာမျက်နှာ</a>
+          <a href="/generators.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-amber-400 bg-amber-400/10">ရောင်းရန် မီးစက်များ</a>
+          <a href="/rentals.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် အငှား</a>
+          <a href="/sell.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">မီးစက် ပြန်ရောင်းရန်</a>
+          <a href="/repair.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+          <a href="/track.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">အခြေအနေစစ်ဆေးရန်</a>
+        </nav>
+
+        <a href="tel:09777888999" class="site-phone-primary hidden sm:flex items-center gap-2 bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs sm:text-sm">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>09 777 888 999</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-3 pb-5 space-y-2">
+      <a href="/" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">ပင်မစာမျက်နှာ</a>
+      <a href="/generators.html" class="block px-3 py-2 rounded-lg text-base font-semibold text-amber-400 bg-amber-400/10">ရောင်းရန် မီးစက်များ</a>
+      <a href="/rentals.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">မီးစက် အငှား</a>
+      <a href="/sell.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">မီးစက် ပြန်ရောင်းရန်</a>
+      <a href="/repair.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">ပြုပြင်ရေး ဝန်ဆောင်မှု</a>
+      <a href="/track.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">အခြေအနေစစ်ဆေးရန်</a>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="bg-slate-900/80 border-b border-slate-800 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white">ရောင်းရန်ရှိသော Secondhand မီးစက်များ</h1>
+          <p class="text-sm text-slate-400 mt-1">ဂျပန်တိုက်ရိုက်တင်သွင်းပြီး အာမခံ (၆) လပါရှိသော မီးစက်စာရင်းများ</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-400">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> အာမခံပါဝင်သည်
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700">
+            <i data-lucide="truck" class="w-4 h-4 text-sky-400"></i> ပို့ဆောင်တပ်ဆင်ပေးသည်
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content & Filters -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+    <div class="grid lg:grid-cols-12 gap-8">
+
+      <!-- Left Filter Sidebar -->
+      <aside class="lg:col-span-3 space-y-6">
+        <div class="glass rounded-2xl p-5 border border-slate-800 space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <h3 class="font-bold text-white text-sm flex items-center gap-2">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-amber-400"></i> စစ်ထုတ်ရန် (Filters)
+            </h3>
+            <button id="btn-reset-filters" class="text-xs text-amber-400 hover:underline">အားလုံးရှင်းရန်</button>
+          </div>
+
+          <!-- Search by Keyword -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">အမည် / မော်ဒယ် ရှာဖွေရန်</label>
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="filter-search" placeholder="Denyo, Cummins..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+            </div>
+          </div>
+
+          <!-- Brand Filter -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">အမှတ်တံဆိပ် (Brand)</label>
+            <select id="filter-brand" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="all">အားလုံး (All Brands)</option>
+              <option value="Denyo">Denyo</option>
+              <option value="Airman">Airman</option>
+              <option value="Cummins">Cummins</option>
+              <option value="Perkins">Perkins</option>
+              <option value="Kubota">Kubota</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Yanmar">Yanmar</option>
+            </select>
+          </div>
+
+          <!-- Capacity Range (kVA) -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">ပါဝါ ပမာဏ (kVA)</label>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="number" id="filter-min-kva" placeholder="Min kVA" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+              <input type="number" id="filter-max-kva" placeholder="Max kVA" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <button class="quick-kva px-2 py-1 rounded bg-slate-800 text-[11px] text-slate-300 hover:bg-slate-700" data-min="10" data-max="30">10-30 kVA</button>
+              <button class="quick-kva px-2 py-1 rounded bg-slate-800 text-[11px] text-slate-300 hover:bg-slate-700" data-min="30" data-max="60">30-60 kVA</button>
+              <button class="quick-kva px-2 py-1 rounded bg-slate-800 text-[11px] text-slate-300 hover:bg-slate-700" data-min="60" data-max="150">60-150 kVA</button>
+              <button class="quick-kva px-2 py-1 rounded bg-slate-800 text-[11px] text-slate-300 hover:bg-slate-700" data-min="150" data-max="500">150+ kVA</button>
+            </div>
+          </div>
+
+          <!-- Type (Soundproof / Open) -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">စက်အမျိုးအစား</label>
+            <select id="filter-type" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="all">အားလုံး (All Types)</option>
+              <option value="Soundproof">Soundproof (အသံလုံ ဗူးပါ)</option>
+              <option value="Open">Open Type (ဗူးမဲ့)</option>
+            </select>
+          </div>
+
+          <!-- Price Range (Lakhs) -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">ဈေးနှုန်း အပိုင်းအခြား (သိန်း)</label>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="number" id="filter-min-price" placeholder="အနည်းဆုံး" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+              <input type="number" id="filter-max-price" placeholder="အများဆုံး" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500">
+            </div>
+          </div>
+
+          <button id="btn-apply-filters" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="filter" class="w-4 h-4"></i> စစ်ထုတ်ကြည့်မည်
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Products Area -->
+      <section class="lg:col-span-9 space-y-6">
+        <!-- Top Toolbar -->
+        <div class="glass rounded-xl p-4 border border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="text-xs text-slate-400">
+            ရလဒ် စုစုပေါင်း: <span id="count-result" class="font-bold text-white text-sm">0</span> ခု တွေ့ရှိပါသည်
+          </div>
+
+          <!-- Sorting -->
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-400">စီစဉ်ရန်:</label>
+            <select id="filter-sort" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500">
+              <option value="newest">နောက်ဆုံးရောက် (Newest)</option>
+              <option value="price_asc">ဈေးနှုန်း အနည်းမှ အများ (Price: Low to High)</option>
+              <option value="price_desc">ဈေးနှုန်း အများမှ အနည်း (Price: High to Low)</option>
+              <option value="kva_asc">kVA အနည်းမှ အများ (kVA: Low to High)</option>
+              <option value="kva_desc">kVA အများမှ အနည်း (kVA: High to Low)</option>
+              <option value="hours_asc">လည်ပတ်နာရီ အနည်းဆုံး (Lowest Hours)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="generators-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamic loaded via JS -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="relative w-full max-w-3xl glass rounded-2xl border border-slate-700 p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button id="btn-close-modal" class="absolute top-5 right-5 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="modal-content">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy / Inquiry Modal -->
+  <div id="inquiry-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="relative w-full max-w-lg glass rounded-2xl border border-slate-700 p-6 sm:p-8 shadow-2xl">
+      <button id="btn-close-inquiry" class="absolute top-5 right-5 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+          <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">မီးစက် ဝယ်ယူရန် မေးမြန်းခြင်း</h3>
+          <p class="text-xs text-slate-400" id="inquiry-gen-title">Generator Title</p>
+        </div>
+      </div>
+
+      <form id="inquiry-form" class="space-y-4">
+        <input type="hidden" id="inquiry-gen-id" name="generator_id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">လူကြီးမင်း အမည် *</label>
+          <input type="text" name="customer_name" required placeholder="ဦး / ဒေါ်..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ဖုန်းနံပါတ် *</label>
+          <input type="tel" name="customer_phone" required placeholder="09xxxxxxxxx" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ပို့ဆောင်ရမည့် နေရာ / မြို့နယ်</label>
+          <input type="text" name="delivery_address" placeholder="ရန်ကုန်၊ မန္တလေး သို့မဟုတ် အခြားမြို့" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">မေးမြန်းလိုသည့် အကြောင်းအရာ (Optional)</label>
+          <textarea name="message" rows="2" placeholder="စက်အခြေအနေ၊ ဈေးနှုန်းညှိနှိုင်းမှု သို့မဟုတ် တပ်ဆင်ရေး မေးမြန်းရန်..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i> ဝယ်ယူရန် တောင်းဆိုချက် ပေးပို့မည်
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Javascript -->
+  <script src="/js/main.js"></script>
+  <script>
+    let allGenerators = [];
+
+    // Parse URL params for pre-filtering (e.g. ?brand=Denyo or ?id=1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const preselectedBrand = urlParams.get('brand');
+    const preselectedId = urlParams.get('id');
+
+    if (preselectedBrand) {
+      const brandSelect = document.getElementById('filter-brand');
+      if (brandSelect) brandSelect.value = preselectedBrand;
+    }
+
+    async function fetchGenerators() {
+      try {
+        const search = document.getElementById('filter-search').value;
+        const brand = document.getElementById('filter-brand').value;
+        const type = document.getElementById('filter-type').value;
+        const min_kva = document.getElementById('filter-min-kva').value;
+        const max_kva = document.getElementById('filter-max-kva').value;
+        const min_price = document.getElementById('filter-min-price').value;
+        const max_price = document.getElementById('filter-max-price').value;
+        const sort = document.getElementById('filter-sort').value;
+
+        const params = new URLSearchParams();
+        if (search) params.append('search', search);
+        if (brand && brand !== 'all') params.append('brand', brand);
+        if (type && type !== 'all') params.append('type', type);
+        if (min_kva) params.append('min_kva', min_kva);
+        if (max_kva) params.append('max_kva', max_kva);
+        if (min_price) params.append('min_price', min_price);
+        if (max_price) params.append('max_price', max_price);
+        if (sort) params.append('sort', sort);
+
+        const res = await fetch(`/api/generators?${params.toString()}`);
+        const json = await res.json();
+
+        if (json.success) {
+          allGenerators = json.data;
+          renderGenerators(allGenerators);
+
+          if (preselectedId) {
+            const found = allGenerators.find(g => g.id == preselectedId);
+            if (found) showDetailModal(found);
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching generators:', e);
+      }
+    }
+
+    function renderGenerators(list) {
+      const container = document.getElementById('generators-container');
+      const countEl = document.getElementById('count-result');
+      countEl.textContent = list.length;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400 glass rounded-2xl border border-slate-800 p-8">
+            <i data-lucide="package-search" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
+            <h4 class="text-base font-bold text-white mb-1">မီးစက် ရှာမတွေ့ပါ</h4>
+            <p class="text-xs text-slate-400">ရှာဖွေမှု အသုံးအနှုန်း သို့မဟုတ် စစ်ထုတ်မှုများကို ပြန်လည်စစ်ဆေးပါ</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = list.map(g => {
+        const isSold = g.status === 'sold';
+        return `
+          <div class="glass rounded-2xl p-5 border border-slate-800 hover-card flex flex-col justify-between ${isSold ? 'opacity-60' : ''}">
+            <div>
+              <div class="relative rounded-xl overflow-hidden bg-slate-900 aspect-video mb-4 border border-slate-800 group">
+                <img src="${g.images[0] || '/images/denyo-25kva.svg'}" alt="${g.title}" class="w-full h-full object-cover">
+                <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500 text-slate-950">
+                  ${g.capacity_kva} kVA
+                </span>
+                <span class="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-semibold ${isSold ? 'bg-rose-900/90 text-rose-300' : 'bg-slate-950/80 text-emerald-400'} border border-slate-700">
+                  ${isSold ? 'ရောင်းပြီး (Sold)' : g.condition}
+                </span>
+              </div>
+
+              <div class="text-[11px] text-slate-400 font-medium mb-1">${g.brand} • ${g.type} • ${g.phase || '3-Phase'}</div>
+              <h3 class="font-bold text-white text-base leading-snug line-clamp-1 mb-2" title="${g.title}">
+                ${g.title}
+              </h3>
+
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-300 mb-4 bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+                <span class="flex items-center gap-1">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> ${g.running_hours ? g.running_hours.toLocaleString() + ' နာရီ' : 'စစ်ဆေးပြီး'}
+                </span>
+                <span class="flex items-center gap-1">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> အာမခံ ${g.warranty_months} လ
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs text-slate-400">ရောင်းဈေး:</span>
+                <span class="text-lg font-black text-amber-400">${formatPrice(g.price_lakhs)}</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="viewGenerator(${g.id})" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition">
+                  အသေးစိတ်
+                </button>
+                <button onclick="openInquiryModal(${g.id}, '${g.title.replace(/'/g, "\\'")}', '${g.price_lakhs}')" ${isSold ? 'disabled' : ''} class="w-full py-2 rounded-xl ${isSold ? 'bg-slate-800 text-slate-500 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-400 text-slate-950'} font-bold text-xs transition">
+                  ${isSold ? 'ရောင်းပြီး' : 'ဝယ်ယူမည်'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function viewGenerator(id) {
+      const g = allGenerators.find(item => item.id === id);
+      if (g) showDetailModal(g);
+    }
+
+    function showDetailModal(g) {
+      const modal = document.getElementById('detail-modal');
+      const content = document.getElementById('modal-content');
+
+      const specsRows = Object.entries(g.specifications || {}).map(([k, v]) => `
+        <div class="flex justify-between py-1.5 border-b border-slate-800 text-xs">
+          <span class="text-slate-400">${k}</span>
+          <span class="font-medium text-slate-200">${v}</span>
+        </div>
+      `).join('');
+
+      content.innerHTML = `
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <div class="rounded-xl overflow-hidden aspect-video bg-slate-900 border border-slate-700 mb-3">
+              <img src="${g.images[0] || '/images/denyo-25kva.svg'}" alt="${g.title}" class="w-full h-full object-cover">
+            </div>
+            ${g.images.length > 1 ? `
+              <div class="flex gap-2 overflow-x-auto pb-2">
+                ${g.images.map(img => `
+                  <img src="${img}" class="w-16 h-12 rounded-lg object-cover border border-slate-700 cursor-pointer" onclick="this.closest('.grid').querySelector('img').src='${img}'">
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                ${g.capacity_kva} kVA • ${g.brand}
+              </span>
+              <h2 class="text-xl font-bold text-white mt-2">${g.title}</h2>
+              <p class="text-xs text-slate-400 mt-1">အခြေအနေ: <span class="text-emerald-400 font-semibold">${g.condition}</span> (${g.running_hours ? g.running_hours.toLocaleString() + ' နာရီ မောင်းပြီး' : ''})</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-xs text-slate-400 block">သတ်မှတ် ဈေးနှုန်း</span>
+              <div class="flex items-baseline gap-2">
+                <span class="text-2xl font-black text-amber-400">${formatPrice(g.price_lakhs)}</span>
+                <span class="text-xs text-slate-400 font-normal">(${g.price_mmk ? formatMmk(g.price_mmk) : ''})</span>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">အဓိက အချက်အလက်များ</h4>
+              <div class="space-y-1">
+                <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
+                  <span class="text-slate-400">အင်ဂျင်မော်ဒယ်</span>
+                  <span class="font-medium text-white">${g.engine_model || '-'}</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
+                  <span class="text-slate-400">ဒိုင်နမို (Alternator)</span>
+                  <span class="font-medium text-white">${g.alternator_brand || '-'}</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
+                  <span class="text-slate-400">Phase & Voltage</span>
+                  <span class="font-medium text-white">${g.phase || '3-Phase'}</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
+                  <span class="text-slate-400">အာမခံ သက်တမ်း</span>
+                  <span class="font-medium text-emerald-400">${g.warranty_months} လ အာမခံ</span>
+                </div>
+                ${specsRows}
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed">${g.description || ''}</p>
+
+            <div class="pt-2 flex gap-3">
+              <button onclick="closeDetailModal(); openInquiryModal(${g.id}, '${g.title.replace(/'/g, "\\'")}', '${g.price_lakhs}')" class="flex-1 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i> ဝယ်ယူရန် မေးမြန်းမည်
+              </button>
+              <a href="tel:09777888999" class="site-phone-primary px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs flex items-center justify-center gap-1.5">
+                <i data-lucide="phone" class="w-4 h-4 text-amber-400"></i> ဖုန်းဆက်ရန်
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+      modal.classList.remove('hidden');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+
+    function openInquiryModal(id, title, price) {
+      document.getElementById('inquiry-gen-id').value = id;
+      document.getElementById('inquiry-gen-title').textContent = `${title} (${formatPrice(price)})`;
+      document.getElementById('inquiry-modal').classList.remove('hidden');
+    }
+
+    function closeInquiryModal() {
+      document.getElementById('inquiry-modal').classList.add('hidden');
+    }
+
+    document.getElementById('btn-close-modal').addEventListener('click', closeDetailModal);
+    document.getElementById('btn-close-inquiry').addEventListener('click', closeInquiryModal);
+
+    // Filter event listeners
+    document.getElementById('btn-apply-filters').addEventListener('click', fetchGenerators);
+    document.getElementById('filter-sort').addEventListener('change', fetchGenerators);
+    document.getElementById('filter-brand').addEventListener('change', fetchGenerators);
+    document.getElementById('filter-type').addEventListener('change', fetchGenerators);
+    document.getElementById('filter-search').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') fetchGenerators();
+    });
+
+    // Quick kVA buttons
+    document.querySelectorAll('.quick-kva').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('filter-min-kva').value = btn.dataset.min;
+        document.getElementById('filter-max-kva').value = btn.dataset.max;
+        fetchGenerators();
+      });
+    });
+
+    document.getElementById('btn-reset-filters').addEventListener('click', () => {
+      document.getElementById('filter-search').value = '';
+      document.getElementById('filter-brand').value = 'all';
+      document.getElementById('filter-type').value = 'all';
+      document.getElementById('filter-min-kva').value = '';
+      document.getElementById('filter-max-kva').value = '';
+      document.getElementById('filter-min-price').value = '';
+      document.getElementById('filter-max-price').value = '';
+      fetchGenerators();
+    });
+
+    // Handle Order Inquiry Submit
+    document.getElementById('inquiry-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        generator_id: form.generator_id.value,
+        customer_name: form.customer_name.value,
+        customer_phone: form.customer_phone.value,
+        delivery_address: form.delivery_address.value,
+        message: form.message.value
+      };
+
+      try {
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+          closeInquiryModal();
+          showToast(`ဝယ်ယူရန် တောင်းဆိုချက် အောင်မြင်ပါသည်! အမှာစာကုဒ်: ${json.order_code}`);
+          form.reset();
+        } else {
+          showToast(json.error || 'အမှားဖြစ်ပေါ်နေပါသည်', 'error');
+        }
+      } catch (err) {
+        showToast('ဆာဗာနှင့် ချိတ်ဆက်မရပါ', 'error');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      fetchGenerators();
+    });
+  </script>
+</body>
+</html>
